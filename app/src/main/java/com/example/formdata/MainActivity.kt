@@ -104,6 +104,7 @@ fun TampilForm(cobaViewModel: CobaViewModel = viewModel()){
     var textTlp by remember { mutableStateOf("")}
     var textAlt by remember { mutableStateOf("")}
     var textEml by remember { mutableStateOf("")}
+    var textSts by remember { mutableStateOf("")}
 
     val context = LocalContext.current
     val dataForm: DataForm
@@ -141,6 +142,10 @@ fun TampilForm(cobaViewModel: CobaViewModel = viewModel()){
             textEml = it
         }
     )
+    Text(
+        text = "Jenis Kelamin",
+        fontSize = 10.sp,
+    )
     SelectJK(
         options = jenis.map { id -> context.resources.getString(id) },
         onSelectionChange = {cobaViewModel.setjenisK(it)})
@@ -157,7 +162,7 @@ fun TampilForm(cobaViewModel: CobaViewModel = viewModel()){
     Button(
         modifier = Modifier.fillMaxWidth(),
         onClick = {
-            cobaViewModel.insertData(textNama,textTlp,textEml, dataForm.sex, textAlt)
+            cobaViewModel.insertData(textNama,textTlp,textEml,textSts, dataForm.sex, textAlt)
         }
     ) {
         Text(
@@ -165,12 +170,11 @@ fun TampilForm(cobaViewModel: CobaViewModel = viewModel()){
             fontSize = 16.sp
         )
     }
-    Spacer(modifier = Modifier.height(100.dp))
+    Spacer(modifier = Modifier.height(50.dp))
     TextHasil(
-        namanya = cobaViewModel.namaUsr,
-        teleponnya = cobaViewModel.noTelp,
         emailnya = cobaViewModel.email,
         jenisnya = cobaViewModel.jenisKL,
+        statusnya = cobaViewModel.status,
         alamatnya = cobaViewModel.alamat
 
     )
@@ -192,6 +196,7 @@ fun SelectJK(
                         onSelectionChange(item)
                     }
                 ),
+                horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically
             ){
                 RadioButton(selected = selectedValue == item,
@@ -207,31 +212,27 @@ fun SelectJK(
 }
 
 @Composable
-fun TextHasil(namanya: String, teleponnya: String,emailnya: String, jenisnya: String, alamatnya: String){
+fun TextHasil(emailnya: String, jenisnya: String, alamatnya: String, statusnya: String){
     ElevatedCard (
         elevation = CardDefaults.cardElevation(
-            defaultElevation = 6.dp
+            defaultElevation = 10.dp
         ),
         modifier = Modifier
             .fillMaxWidth()
     ){
-        Text(text = "Nama : " + namanya,
-            modifier = Modifier
-                .padding(horizontal = 10.dp, vertical = 4.dp)
-        )
-        Text(text = "Telepon : " + teleponnya,
-            modifier = Modifier
-                .padding(horizontal = 10.dp, vertical = 5.dp)
-        )
-        Text(text = "Email : " + emailnya,
-            modifier = Modifier
-                .padding(horizontal = 10.dp, vertical = 5.dp)
-        )
         Text(text = "Jenis Kelamin : " + jenisnya,
             modifier = Modifier
                 .padding(horizontal = 10.dp, vertical = 4.dp)
         )
+        Text(text = "Status : " + statusnya,
+            modifier = Modifier
+                .padding(horizontal = 10.dp, vertical = 5.dp)
+        )
         Text(text = "Alamat : " + alamatnya,
+            modifier = Modifier
+                .padding(horizontal = 10.dp, vertical = 5.dp)
+        )
+        Text(text = "Email : " + emailnya,
             modifier = Modifier
                 .padding(horizontal = 10.dp, vertical = 5.dp)
         )
