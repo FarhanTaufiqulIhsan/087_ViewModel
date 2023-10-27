@@ -105,7 +105,7 @@ fun TampilForm(cobaViewModel: CobaViewModel = viewModel()){
     var textTlp by remember { mutableStateOf("")}
     var textAlt by remember { mutableStateOf("")}
     var textEml by remember { mutableStateOf("")}
-    var textSts by remember { mutableStateOf("")}
+
 
     val context = LocalContext.current
     val dataForm: DataForm
@@ -173,7 +173,7 @@ fun TampilForm(cobaViewModel: CobaViewModel = viewModel()){
     Button(
         modifier = Modifier.fillMaxWidth(),
         onClick = {
-            cobaViewModel.insertData(textNama,textTlp,textEml,textSts, dataForm.sex, textAlt)
+            cobaViewModel.insertData(textNama,textTlp,textEml,dataForm.mar, dataForm.sex, textAlt)
         }
     ) {
         Text(
