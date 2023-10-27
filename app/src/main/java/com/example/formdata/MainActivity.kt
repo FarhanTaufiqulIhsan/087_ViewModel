@@ -136,6 +136,7 @@ fun TampilForm(cobaViewModel: CobaViewModel = viewModel()){
     OutlinedTextField(
         value = textEml,
         singleLine = true,
+        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email),
         shape = MaterialTheme.shapes.large,
         modifier = Modifier.fillMaxWidth(),
         label = {Text(text = "Email")},
