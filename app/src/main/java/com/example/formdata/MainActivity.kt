@@ -146,14 +146,17 @@ fun TampilForm(cobaViewModel: CobaViewModel = viewModel()){
     )
     Text(
         text = "Jenis Kelamin",
-        fontSize = 10.sp,
+        fontSize = 15.sp,
+        modifier = Modifier.fillMaxWidth()
     )
     SelectJK(
         options = jenis.map { id -> context.resources.getString(id) },
         onSelectionChange = {cobaViewModel.setjenisK(it)})
     Text(
         text = "Status",
-        fontSize = 10.sp)
+        fontSize = 15.sp,
+        modifier = Modifier.fillMaxWidth()
+    )
     SelectStats(
         options = stats.map { id -> context.resources.getString(id) },
         onSelectionChange = {cobaViewModel.setstatusS(it)})
